@@ -2,15 +2,16 @@
     ViewData["Title"] = "Movie List"; <!--Title for the web page-->
 }
 
-@model List<MovieResponse>
+@model List<MovieResponse> 
+    <!--connects to the list of movie responses--->
 
 <div class="text-center">
     <h1 class="display-4">All Movies</h1> <!--Heading for the web page-->
 </div>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped"> <!--Creates table for the information-->
     <thead class="font-weight-bold">
-        <tr>
-            <td>Movie Submission ID</td>
+        <tr> 
+            <td>Movie Submission ID</td> <!--Creates the columns for the movie table-->
             <td>Category</td>
             <td>Title</td>
             <td>Year</td>
@@ -22,12 +23,14 @@
         </tr>
     </thead>
 
-    <tbody>
-        @foreach (var x in Model)
+    <tbody> 
+        <!--Instructs how to put the info from the db into the table-->
+        @foreach (var x in Model) 
+        
         {
         <tr>
-            <td>@x.MovieSubmissionId</td>
-            <td>@x.Category.CategoryName</td>
+            <td>@x.MovieSubmissionId</td> <!--Allows for the record's data for each column to be entered-->
+            <td>@x.Category.CategoryName</td> 
             <td>@x.Title</td>
             <td>@x.Year</td>
             <td>@x.Director</td>
@@ -36,7 +39,9 @@
             <td>@x.Lent_to</td>
             <td>@x.Notes</td>
 
+            <!--Button To Edit Record-->
             <td><a asp-controller="Home" asp-action="Edit" asp-route-MovieSubmissionId="@x.MovieSubmissionId">Edit</a></td>
+            <!--Button To Delete Record-->
             <td><a asp-controller="Home" asp-action="Delete" asp-route-MovieSubmissionId="@x.MovieSubmissionId">Delete</a></td>
         </tr>
         }

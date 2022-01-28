@@ -12,11 +12,11 @@ namespace Mission5_Higbee.Models
         {
         }
 
-        public DbSet<MovieResponse> Responses { get; set; } //where to get what's going into the database
-        public DbSet<Category>Categories { get; set; }
-        protected override void OnModelCreating(ModelBuilder mb)
+        public DbSet<MovieResponse> Responses { get; set; } //where to get what's going into the movie db
+        public DbSet<Category>Categories { get; set; } //where to get what's going into the category db
+        protected override void OnModelCreating(ModelBuilder mb) //overrides the blank tables
         {
-            mb.Entity<Category>().HasData(
+            mb.Entity<Category>().HasData( //seeds data for the category table
                 new Category { CategoryId = 1, CategoryName = "Action/Adventure" },
                 new Category { CategoryId = 2, CategoryName = "Family" },
                 new Category { CategoryId = 3, CategoryName = "Comedy" },
@@ -27,7 +27,7 @@ namespace Mission5_Higbee.Models
                 new Category { CategoryId = 8, CategoryName = "VHS" }
                 );
     
-            mb.Entity<MovieResponse>().HasData( //assigns the data to the db
+            mb.Entity<MovieResponse>().HasData( //assigns the data to the movies db
                 new MovieResponse //first response seeded in
                 {
                     MovieSubmissionId=1,

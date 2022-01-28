@@ -42,7 +42,7 @@ namespace Mission5_Higbee.Controllers
             }
             else
             {
-                ViewBag.Categories = Movies.Categories.ToList();
+                ViewBag.Categories = Movies.Categories.ToList(); //if the information is invalid
                 return View();
             }
         }
@@ -53,45 +53,47 @@ namespace Mission5_Higbee.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewMovies()
+        public IActionResult ViewMovies() //return get request for the View Movies table
         {
            var table=Movies.Responses
-                .Include(x=>x.Category)
+                .Include(x=>x.Category) //includes the name for each category, rather than the number
                 .ToList();
 
            return View(table); 
         }
 
         [HttpGet]
-        public IActionResult Edit(int MovieSubmissionId)
-        {
-            ViewBag.Categories = Movies.Categories.ToList();
+        public IActionResult Edit(int MovieSubmissionId) //return get request for the edit request
+        { 
+            ViewBag.Categories = Movies.Categories.ToList(); //allows for movie categories to be used
             var form = Movies.Responses.Single(x => x.MovieSubmissionId == MovieSubmissionId);
-            return View("AddMovies", form);
+            //identifies which record is being edited
+            return View("AddMovies", form); //returns editable information
         }
 
         [HttpPost]
         
-        public IActionResult Edit(MovieResponse mr)
+        public IActionResult Edit(MovieResponse mr) //response for the post request for editing
         {
-            Movies.Update(mr);
-            Movies.SaveChanges();
-            return RedirectToAction("ViewMovies");
+            Movies.Update(mr); //updates the movie
+            Movies.SaveChanges(); //saves changes
+            return RedirectToAction("ViewMovies"); //redirects to the table
         }
 
         [HttpGet]
-        public IActionResult Delete(int MovieSubmissionId)
+        public IActionResult Delete(int MovieSubmissionId)//response for the get request for deleting
         {
             var form = Movies.Responses.Single(x => x.MovieSubmissionId == MovieSubmissionId);
+            //identifies which record is being deleted
             return View(form);
         }
 
         [HttpPost]
-        public IActionResult Delete(MovieResponse mr)
+        public IActionResult Delete(MovieResponse mr)//response for the post request for deleting
         {
-            Movies.Responses.Remove(mr);
-            Movies.SaveChanges();
-            return RedirectToAction("ViewMovies");
+            Movies.Responses.Remove(mr); //removes the record 
+            Movies.SaveChanges();//saves the changes
+            return RedirectToAction("ViewMovies"); //redirects to view movies table
         }
     }
     

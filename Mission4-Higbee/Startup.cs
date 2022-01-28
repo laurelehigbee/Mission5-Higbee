@@ -36,7 +36,7 @@ namespace Mission5_Higbee
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment()) //what to do when in development and there's an error
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -56,8 +56,8 @@ namespace Mission5_Higbee
             app.UseEndpoints(endpoints => //endpoint route
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "default", //creates endpoint, establishes what to display in url
+                    pattern: "{controller=Home}/{action=Index}/{MovieSubmissionId?}");
             });
         }
     }

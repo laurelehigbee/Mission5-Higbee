@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mission5_Higbee.Models
 {
-    public class Category
+    public class Category //sets up class for the category table
     {
-        [Key]
-        [Required]
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        [Key] //sets the category id as the primary key
+        [Required] //sets the variable as required
+        public int CategoryId { get; set; } //sets the category id variable
+        public string CategoryName { get; set; } //sets the category name variable
     }
 }

@@ -4,14 +4,15 @@
 @{
 }
 
-@model Mission5_Higbee.Models.MovieResponse
+@model Mission5_Higbee.Models.MovieResponse 
+    <!--Connects to the movie response model-->
 @{
     ViewData["Title"] = "Delete Movie?"; <!--Title for this web page-->
 }
 
-<h2>Are you sure you want to delete the record for @Model.Title?</h2>
+<h2>Are you sure you want to delete the record for @Model.Title?</h2> <!--Asks for confirmation-->
 
-<form method="post" asp-controller="Home" asp-action="Delete">
-    <button type="submit">Delete</button>
-    <a asp-controller="Home" asp-action="ViewMovies" class="btn btn-primary">Cancel</a>
+<form method="post" asp-controller="Home" asp-action="Delete"> <!--Connects to delete action-->
+    <button type="submit" class="btn">Delete</button> <!--Delete button-->
+    <a asp-controller="Home" asp-action="ViewMovies" class="btn btn-primary">Cancel</a> <!--Cancel button-->
 </form>

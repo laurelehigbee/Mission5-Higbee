@@ -11,11 +11,10 @@ namespace Mission5_Higbee.Models
         [Key] //assigns the MovieSubmissionID as the primary key
         [Required] //required input
         public int MovieSubmissionId { get; set; } 
-        [Required]  //required input
 
         //sets up the foreign key with the category table
-        public int CategoryId { get; set; }
         [Required]
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
 
 
