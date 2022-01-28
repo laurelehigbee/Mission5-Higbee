@@ -12,9 +12,14 @@
 
     <div class="col-auto">
         <!--Creates column-->
-        <label asp-for="Category">Category:</label><br /> <!--Category input-->
-        <input asp-for="Category" type="text" /><br />
-
+        <label asp-for="CategoryId">Category:</label><br /> <!--Category input-->
+        <select asp-for="CategoryId">
+            <option value="">Select a Category:</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select><br />
         <label asp-for="Title">Title:</label><br /> <!--Title input-->
         <input asp-for="Title" type="text" /><br />
 
@@ -27,6 +32,7 @@
 
         <label asp-for="Rating">Rating:</label><br /> <!--Rating input-->
         <select asp-for="Rating">
+            <option value="">Select a Rating:</option>
             <option value="G">G</option> <!--Rating options-->
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>

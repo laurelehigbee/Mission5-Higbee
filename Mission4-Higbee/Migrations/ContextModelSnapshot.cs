@@ -15,15 +15,70 @@ namespace Mission5_Higbee.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22");
 
+            modelBuilder.Entity("Mission5_Higbee.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Action/Adventure"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Family"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Drama"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Horror/Suspense"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryName = "Miscellaneous"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            CategoryName = "Television"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            CategoryName = "VHS"
+                        });
+                });
+
             modelBuilder.Entity("Mission5_Higbee.Models.MovieResponse", b =>
                 {
                     b.Property<int>("MovieSubmissionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -44,7 +99,6 @@ namespace Mission5_Higbee.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Year")
@@ -52,13 +106,15 @@ namespace Mission5_Higbee.Migrations
 
                     b.HasKey("MovieSubmissionId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Responses");
 
                     b.HasData(
                         new
                         {
                             MovieSubmissionId = 1,
-                            Category = "Family",
+                            CategoryId = 2,
                             Director = "Chris Buck and Jennifer Lee",
                             Edited = false,
                             Lent_to = "",
@@ -70,7 +126,7 @@ namespace Mission5_Higbee.Migrations
                         new
                         {
                             MovieSubmissionId = 2,
-                            Category = "Action/Adventure",
+                            CategoryId = 1,
                             Director = "Joe and Anthony Russo",
                             Edited = false,
                             Lent_to = "",
@@ -82,7 +138,7 @@ namespace Mission5_Higbee.Migrations
                         new
                         {
                             MovieSubmissionId = 3,
-                            Category = "Action/Adventure",
+                            CategoryId = 1,
                             Director = "Haruo Sotozaki",
                             Edited = false,
                             Lent_to = "",
@@ -91,6 +147,15 @@ namespace Mission5_Higbee.Migrations
                             Title = "Demon Slayer: Mugen Train",
                             Year = 2020
                         });
+                });
+
+            modelBuilder.Entity("Mission5_Higbee.Models.MovieResponse", b =>
+                {
+                    b.HasOne("Mission5_Higbee.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

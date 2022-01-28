@@ -12,8 +12,13 @@ namespace Mission5_Higbee.Models
         [Required] //required input
         public int MovieSubmissionId { get; set; } 
         [Required]  //required input
-        public string Category { get; set; }
-        [Required] //required input
+
+        //sets up the foreign key with the category table
+        public int CategoryId { get; set; }
+        [Required]
+        public Category Category { get; set; }
+
+
         public string Title { get; set; }
         [Required]//required input
         public int Year { get; set; }
